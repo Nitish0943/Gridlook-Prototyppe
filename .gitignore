@@ -1,38 +1,21 @@
+# Dataset
+backend/data/
+*.csv
+
 # Python
 __pycache__/
-*.py[cod]
-*.pyo
-*.pyd
-.Python
-.venv/
+*.pyc
 venv/
-env/
-pip-wheel-metadata/
-.pytest_cache/
-.mypy_cache/
-.ruff_cache/
-.coverage
-htmlcov/
-
-# Local env files
 .env
-.env.*
+
+# Node
+node_modules/
+.next/
+dist/
 
 # Logs
 *.log
 
-# Frontend
-node_modules/
-.next/
-out/
-build/
-coverage/
-*.tsbuildinfo
-.vercel/
-
-# OS/editor files
+# OS
 .DS_Store
 Thumbs.db
-desktop.ini
-.idea/
-.vscode/
