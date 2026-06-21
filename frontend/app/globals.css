@@ -1,0 +1,160 @@
+@import "tailwindcss";
+
+:root {
+  --background: #F8FAFC;
+  --foreground: #1E293B;
+}
+
+@theme {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+
+  /* Force Slate colors to represent a clean light theme */
+  --color-slate-950: #F8FAFC; /* Page Canvas Background */
+  --color-slate-900: #FFFFFF; /* Card Background */
+  --color-slate-850: #E2E8F0; /* Border slate-200 */
+  --color-slate-800: #E2E8F0; /* Border slate-200 */
+  --color-slate-700: #475569;
+  --color-slate-600: #64748B;
+  --color-slate-500: #64748B;
+  --color-slate-400: #1E293B; /* Slate-800 readable text */
+  --color-slate-350: #334155;
+  --color-slate-300: #475569;
+  --color-slate-200: #475569;
+  --color-slate-100: #1E293B; /* Slate-800 readable text */
+
+  /* Override cyberpunk neons to Gov colors */
+  --color-cyan-400: #0F4C81; /* Gov Blue */
+  --color-cyan-500: #0D3F6D;
+  --color-cyan-600: #0A3258;
+  --color-cyan-700: #082643;
+  --color-cyan-800: #051A2E;
+  --color-cyan-950: #F1F5F9;
+
+  --color-purple-400: #1E3A5F; /* Navy secondary */
+  --color-purple-500: #162C4E;
+
+  /* Fonts */
+  --font-sans: var(--font-inter);
+  --font-mono: var(--font-inter);
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+}
+
+/* Force solid card backgrounds for glassmorphic elements to ensure contrast */
+div[class*="bg-slate-900/"],
+div[class*="bg-slate-900\\/"] {
+  background-color: #ffffff !important;
+  backdrop-filter: none !important;
+}
+
+/* Make hover backgrounds on table rows subtle grey instead of dark/neon */
+tr[class*="hover:bg-slate-900/"]:hover,
+tr[class*="hover:bg-slate-900\\/"]:hover {
+  background-color: #f1f5f9 !important;
+}
+
+/* Override all custom neon shadow effects to be clean, subtle administrative shadows */
+div[class*="shadow-[0_0_"],
+div[class*="shadow-[0_2px_"] {
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03) !important;
+}
+
+/* Override any explicit dark-theme border colors or rings that might have been hardcoded */
+div[class*="border-slate-800"],
+div[class*="border-slate-850"],
+div[class*="border-slate-900"] {
+  border-color: #e2e8f0 !important;
+}
+
+/* Custom Leaflet Light Theme Popups */
+.custom-leaflet-popup .leaflet-popup-content-wrapper,
+.custom-leaflet-popup .leaflet-popup-tip {
+  background-color: #ffffff !important;
+  color: #1e293b !important;
+  border: 1px solid #e2e8f0 !important;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.08) !important;
+  border-radius: 12px !important;
+}
+
+.custom-leaflet-popup .leaflet-popup-content {
+  margin: 12px 14px !important;
+}
+
+.custom-leaflet-popup .leaflet-popup-close-button {
+  color: #64748b !important;
+  top: 8px !important;
+  right: 8px !important;
+}
+
+.custom-leaflet-popup .leaflet-popup-close-button:hover {
+  color: #000000 !important;
+}
+
+/* Custom scrollbars for dashboard widgets */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(241, 245, 249, 0.3);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(148, 163, 184, 0.5);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(15, 76, 129, 0.5);
+}
+
+/* Page-level text-white and text-slate-100 elements inside main area to be readable dark slate, protecting buttons, links, and dark backgrounds */
+main h1.text-white,
+main h2.text-white,
+main h3.text-white,
+main h4.text-white,
+main h5.text-white,
+main p.text-white,
+main strong.text-white,
+main td.text-white,
+main th.text-white,
+main li.text-white,
+main div.text-white,
+main span.text-white:not(button):not(button *):not(a):not(a *):not(.leaflet-popup *):not([class*="bg-rose"]):not([class*="bg-emerald"]):not([class*="bg-amber"]):not([class*="bg-cyan"]):not([class*="bg-purple"]):not([class*="bg-red"]):not([class*="bg-blue"]):not([class*="bg-green"]):not([class*="bg-yellow"]):not([class*="bg-[#0F4C81]"]):not([class*="bg-[#0f4c81]"]):not([class*="bg-[#1E3A5F]"]),
+main h1.text-slate-100,
+main h2.text-slate-100,
+main h3.text-slate-100,
+main h4.text-slate-100,
+main h5.text-slate-100,
+main p.text-slate-100,
+main strong.text-slate-100,
+main td.text-slate-100,
+main th.text-slate-100,
+main li.text-slate-100,
+main div.text-slate-100:not(button):not(button *):not(a):not(a *):not(.leaflet-popup *):not([class*="bg-rose"]):not([class*="bg-emerald"]):not([class*="bg-amber"]):not([class*="bg-cyan"]):not([class*="bg-purple"]):not([class*="bg-red"]):not([class*="bg-blue"]):not([class*="bg-green"]):not([class*="bg-yellow"]):not([class*="bg-[#0F4C81]"]):not([class*="bg-[#0f4c81]"]):not([class*="bg-[#1E3A5F]"]),
+main span.text-slate-100:not(button):not(button *):not(a):not(a *):not(.leaflet-popup *):not([class*="bg-rose"]):not([class*="bg-emerald"]):not([class*="bg-amber"]):not([class*="bg-cyan"]):not([class*="bg-purple"]):not([class*="bg-red"]):not([class*="bg-blue"]):not([class*="bg-green"]):not([class*="bg-yellow"]):not([class*="bg-[#0F4C81]"]):not([class*="bg-[#0f4c81]"]):not([class*="bg-[#1E3A5F]"]),
+main .text-slate-100:not(button):not(button *):not(a):not(a *):not(.leaflet-popup *):not([class*="bg-rose"]):not([class*="bg-emerald"]):not([class*="bg-amber"]):not([class*="bg-cyan"]):not([class*="bg-purple"]):not([class*="bg-red"]):not([class*="bg-blue"]):not([class*="bg-green"]):not([class*="bg-yellow"]):not([class*="bg-[#0F4C81]"]):not([class*="bg-[#0f4c81]"]):not([class*="bg-[#1E3A5F]"]) {
+  color: #1E293B !important;
+}
+
+/* Ensure Recharts ticks, labels, and legends are highly visible in light mode */
+.recharts-text,
+.recharts-text tspan {
+  fill: #475569 !important;
+}
+
+.recharts-legend-item-text {
+  color: #1E293B !important;
+}
+
+.recharts-default-tooltip {
+  background-color: #ffffff !important;
+  border: 1px solid #e2e8f0 !important;
+  color: #1e293b !important;
+}
+
