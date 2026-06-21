@@ -29,7 +29,7 @@ export default function SettingsPage() {
               </label>
               <input
                 type="text"
-                value="http://localhost:8000"
+                value="https://web-production-a41f7.up.railway.app/docs"
                 readOnly
                 className="w-full mt-1.5 px-3 py-2 bg-slate-950/80 border border-slate-850 rounded-lg text-xs text-slate-400 focus:outline-none font-mono"
               />
