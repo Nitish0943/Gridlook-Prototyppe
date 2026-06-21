@@ -24,6 +24,7 @@ from app.services.economic_impact_engine import EconomicImpactEngine
 from app.services.forecast_engine import ForecastEngine
 from app.services.peak_hour_engine import PeakHourEngine
 from app.utils.logger import logger
+from app.services.keepalive import start_keepalive
 
 
 @asynccontextmanager
@@ -127,6 +128,10 @@ async def lifespan(app: FastAPI):
         app.state.peak_hours_summary = peak_hours_summary
         
         logger.info("Data components, hotspots, and recommendations successfully loaded and stored in-memory.")
+
+        # Start keepalive background task to prevent server spin-down
+        app.state.keepalive_task = start_keepalive()
+        logger.info("Keepalive cron started — pinging /health every 10 minutes.")
     except Exception as e:
         logger.critical(f"Startup execution failed: {str(e)}")
         # Allow the application to start in a degraded state for debugging/health check
@@ -160,6 +165,8 @@ async def lifespan(app: FastAPI):
     
     # Shutdown clean up
     logger.info("FastAPI lifecycle shutting down. Cleaning up in-memory resources...")
+    if hasattr(app.state, "keepalive_task") and app.state.keepalive_task:
+        app.state.keepalive_task.cancel()
     if hasattr(app.state, "df"):
         del app.state.df
     if hasattr(app.state, "stats"):
